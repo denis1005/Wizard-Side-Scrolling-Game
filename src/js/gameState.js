@@ -2,6 +2,8 @@ function initState(){
 
     const state={
         isActiveGame:true,
+        gamePoints:0,
+        bugKillBonus:2000,
         wizard:{
             width:82,
             height:100,

@@ -126,6 +126,16 @@ function renderBugs(game,state){
       if(detectCollision(game.wizardElement,bug)){
         gameOver(game,state);
       }
+    
+      document.querySelectorAll('.fireball').forEach(fireball=>{
+       if(detectCollision(fireball,bug)){
+        state.gamePoints+=state.bugKillBonus;
+        bug.remove();
+        fireball.remove();
+        game.scoreElement.textContent=`${state.gamePoints} pts.`
+       }
+       
+     })
   
     
  })
