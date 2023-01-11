@@ -27,3 +27,14 @@ body {
 .start-screen:hover{
     background-color: green;
 }
+
+.game-screen{
+    width: 100%;
+    height: 100%;
+    display: block;
+    background-color:blue ;
+}
+
+.hidden {
+    display: none;
+}
