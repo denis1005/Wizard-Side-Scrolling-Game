@@ -4,7 +4,7 @@ function start (state,game){
 }
 
 function gameLoop (state,game){
-  console.log('frame')
+  console.log(state.keys)
 
   window.requestAnimationFrame(gameLoop.bind(null,state,game))
 }
