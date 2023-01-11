@@ -10,6 +10,7 @@ function gameLoop (state,game,timestamp){
   const {wizard}=state;
 
 
+
   // Spawn Bugs
   spawnBugs(timestamp,state,game)
 
@@ -27,6 +28,7 @@ function gameLoop (state,game,timestamp){
 
   // Render Wizard
   renderWizardMovement(wizardElement,wizard,wizardElement)
+
 
   if(state.isActiveGame){
     window.requestAnimationFrame(gameLoop.bind(null,state,game))
@@ -130,9 +132,14 @@ function renderBugs(game,state){
       document.querySelectorAll('.fireball').forEach(fireball=>{
        if(detectCollision(fireball,bug)){
         state.gamePoints+=state.bugKillBonus;
+        if(state.gamePoints >=100 &&  state.Level==1){
+          state.Level+=1
+          state.bugStats.speed*=3
+          state.bugStats.maxSpawnPeriod-=1000
+        }
         bug.remove();
         fireball.remove();
-        game.scoreElement.textContent=`${state.gamePoints} pts.`
+        game.scoreElement.textContent=`${state.gamePoints} pts. Level: ${state.Level}`
        }
        
      })
@@ -140,3 +147,4 @@ function renderBugs(game,state){
     
  })
 }
+

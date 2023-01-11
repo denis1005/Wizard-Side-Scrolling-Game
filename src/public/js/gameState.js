@@ -3,7 +3,8 @@ function initState(){
     const state={
         isActiveGame:true,
         gamePoints:0,
-        bugKillBonus:2000,
+        bugKillBonus:50,
+        Level:1,
         wizard:{
             width:82,
             height:100,
@@ -19,8 +20,8 @@ function initState(){
            Space:false,
         },
         fireballStats:{
-            width:20,
-            height:20,
+            width:30,
+            height:30,
             speed:5,
             fireInterval:500,
             lastTimeFireball:0
