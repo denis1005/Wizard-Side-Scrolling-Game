@@ -1,15 +1,20 @@
 function start (state,game){
   game.createWizard(state.wizard);
-  window.requestAnimationFrame(gameLoop.bind(null,state,game))
+  window.requestAnimationFrame(timestamp=>gameLoop(state,game,timestamp))
 }
 
-function gameLoop (state,game){
+function gameLoop (state,game,timestamp){
+  
   
   const {wizardElement}=game;
   const {wizard}=state
 
   // Spawn Bugs
-  game.createBug(state.bugStats);
+  if (timestamp>state.bugStats.nextSpawn){
+    game.createBug(state.bugStats);
+    state.bugStats.nextSpawn=timestamp + Math.random()*state.bugStats.maxSpawnPeriod;
+  }
+ 
   
   // Move Wizard
   modifyWizardPosition(state,game,wizard)

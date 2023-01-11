@@ -17,6 +17,8 @@ function initState(){
         bugStats: {
              width:50,
              height:50,
+             nextSpawn:0,
+             maxSpawnPeriod:3000,
         }
     }
     return state;
