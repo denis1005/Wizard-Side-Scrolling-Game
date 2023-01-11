@@ -14,14 +14,28 @@ function gameLoop (state,game,timestamp){
     game.createBug(state.bugStats);
     state.bugStats.nextSpawn=timestamp + Math.random()*state.bugStats.maxSpawnPeriod;
   }
+
  
   
   // Move Wizard
   modifyWizardPosition(state,game,wizard)
-
+  
+   //Render Bugs
+   document.querySelectorAll('.bug').forEach(bug=>{
+      let posX=parseInt(bug.style.left);
+      if (posX>0){
+        bug.style.left=posX - state.bugStats.speed + 'px';
+      }else {
+        bug.remove()
+      }
+     
+   })
 
   // Render
   renderWizardMovement(wizardElement,wizard)
+
+ 
+
   
 
   window.requestAnimationFrame(gameLoop.bind(null,state,game))

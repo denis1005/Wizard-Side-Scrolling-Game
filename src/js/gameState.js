@@ -19,6 +19,7 @@ function initState(){
              height:50,
              nextSpawn:0,
              maxSpawnPeriod:3000,
+             speed:4,
         }
     }
     return state;
