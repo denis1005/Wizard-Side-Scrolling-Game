@@ -17,6 +17,15 @@ function initGameObject(){
        gameScreen.appendChild(wizardElement);
        return wizardElement;
      },
+     createFireball(wizard,fireball){
+        let fireballElement=document.createElement('div');
+        fireballElement.classList.add('fireball');
+        fireballElement.style.left=wizard.positionX + wizard.width + 'px';
+        fireballElement.style.top=wizard.positionY  + wizard.height/3  + 'px';
+        fireballElement.style.width=fireball.width + 'px' ;
+        fireballElement.style.height=fireball.height + 'px';
+        gameScreen.appendChild(fireballElement);
+     },
      createBug(stats){
        let bugElement=document.createElement('div');
        bugElement.classList.add('bug');

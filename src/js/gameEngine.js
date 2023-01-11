@@ -20,10 +20,11 @@ function gameLoop (state,game,timestamp){
   // Move Wizard
   modifyWizardPosition(state,game,wizard)
 
-  //shooting
+  //Shooting
 
   if (state.keys.Space){
     game.wizardElement.style.backgroundImage=`url('./images/wizard-fire.png')`
+    game.createFireball(wizard,state.fireballStats);
   }else{
     game.wizardElement.style.backgroundImage=`url('./images/wizard.png')`
   }

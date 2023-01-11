@@ -15,6 +15,10 @@ function initState(){
            KeyW:false,
            Space:false,
         },
+        fireballStats:{
+            width:10,
+            height:10,
+        },
         bugStats: {
              width:50,
              height:50,
