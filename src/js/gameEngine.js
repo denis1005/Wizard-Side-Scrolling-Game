@@ -49,15 +49,14 @@ function gameLoop (state,game,timestamp){
       }else {
         bug.remove()
       }
-     
+     if(detectCollision(wizardElement,bug)){
+       console.log('collision')
+     }
    })
 
   // Render Wizard
   renderWizardMovement(wizardElement,wizard)
 
- 
-
-  
 
   window.requestAnimationFrame(gameLoop.bind(null,state,game))
 }
@@ -88,4 +87,21 @@ function renderWizardMovement(wizardElement,wizard){
   wizardElement.style.top= wizard.positionY + 'px';
   wizardElement.style.bottom= wizard.positionY + 'px';
   wizardElement.style.right= wizard.positionX + 'px';
+}
+
+function detectCollision(objectA, objectB) {
+  // check if objectA and objectB are DOM elements
+  if (!(objectA instanceof Element) || !(objectB instanceof Element)) {
+      console.error("Both objectA and objectB must be DOM elements");
+      return;
+  }
+
+  let first = objectA.getBoundingClientRect();
+  let second = objectB.getBoundingClientRect();
+
+  // perform collision detection and return the result
+  return !(first.top > second.bottom || 
+           first.bottom < second.top || 
+           first.right < second.left || 
+           first.left > second.right);
 }
