@@ -19,6 +19,14 @@ function gameLoop (state,game,timestamp){
   
   // Move Wizard
   modifyWizardPosition(state,game,wizard)
+
+  //shooting
+
+  if (state.keys.Space){
+    game.wizardElement.style.backgroundImage=`url('./images/wizard-fire.png')`
+  }else{
+    game.wizardElement.style.backgroundImage=`url('./images/wizard.png')`
+  }
   
    //Render Bugs
    document.querySelectorAll('.bug').forEach(bug=>{

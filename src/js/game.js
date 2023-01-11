@@ -7,6 +7,7 @@ const availableKeys=[
   'KeyW',
   'KeyD',
   'KeyS',
+  'Space',
   
 ];
 
