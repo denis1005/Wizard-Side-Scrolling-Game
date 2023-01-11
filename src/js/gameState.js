@@ -6,6 +6,7 @@ function initState(){
             height:100,
             positionX:100,
             positionY:200,
+            speed:4
         },
         keys:{
 

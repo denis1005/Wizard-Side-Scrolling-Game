@@ -9,26 +9,26 @@ function gameLoop (state,game){
   
   // Move Wizard
    if (state.keys.KeyD){
-    wizard.positionX+=4;
+    wizard.positionX=Math.min(wizard.positionX + wizard.speed, game.gameScreen.offsetWidth - wizard.width-1)
    }
 
-   if (state.keys.KeyW){
-    wizard.positionY-=4;
+   if (state.keys.KeyW && wizard.positionY - wizard.speed>0){
+    wizard.positionY-=wizard.speed;
    }
 
    if (state.keys.KeyS){
-    wizard.positionY+=4;
+    wizard.positionY=Math.min(wizard.positionY + wizard.speed, game.gameScreen.offsetHeight - wizard.height)
    }
 
-   if (state.keys.KeyA){
-    wizard.positionX-=4;
+   if (state.keys.KeyA && wizard.positionX - wizard.speed>0) {
+    wizard.positionX-=wizard.speed;
    }
 
   // Render
   wizardElement.style.left= wizard.positionX + 'px';
   wizardElement.style.top= wizard.positionY + 'px';
   wizardElement.style.bottom= wizard.positionY + 'px';
-  wizardElement.style.right= wizard.positionY + 'px';
+  wizardElement.style.right= wizard.positionX + 'px';
   
 
   window.requestAnimationFrame(gameLoop.bind(null,state,game))
