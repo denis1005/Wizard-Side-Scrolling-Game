@@ -46,3 +46,10 @@ body {
     background-repeat: no-repeat;
    
 }
+
+.bug {
+    position: absolute;
+    background-image :url('../images/bug.png');
+    background-size: cover;
+    
+}

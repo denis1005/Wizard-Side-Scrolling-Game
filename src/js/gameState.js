@@ -9,7 +9,14 @@ function initState(){
             speed:4
         },
         keys:{
-
+           KeyA:false,
+           KeyS:false,
+           KeyD:false,
+           KeyW:false,
+        },
+        bugStats: {
+             width:50,
+             height:50,
         }
     }
     return state;
