@@ -1,11 +1,15 @@
 
 const startScreen=document.querySelector('.start-screen');
 const gameScreen=document.querySelector('.game-screen');
+const gameOverScreen=document.querySelector('.game-over');
+const scoreElement=document.querySelector('.score');
 
 function initGameObject(){
    return {
     startScreen,
     gameScreen,
+    gameOverScreen,
+    scoreElement,
      createWizard(initialState){
        let wizardElement=document.createElement('div');
        wizardElement.classList.add('wizard');
@@ -25,6 +29,7 @@ function initGameObject(){
         fireballElement.style.width=fireball.width + 'px' ;
         fireballElement.style.height=fireball.height + 'px';
         gameScreen.appendChild(fireballElement);
+        return fireballElement
      },
      createBug(stats){
        let bugElement=document.createElement('div');

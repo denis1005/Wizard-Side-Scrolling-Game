@@ -25,8 +25,8 @@ document.addEventListener('keyup',(e)=>{
  })
 
 game.startScreen.addEventListener('click',(e)=>{
-    console.log('start');
     game.startScreen.classList.add('hidden');
+    game.scoreElement.classList.remove('hidden')
     game.gameScreen.classList.remove('hidden')
 
     // Start game

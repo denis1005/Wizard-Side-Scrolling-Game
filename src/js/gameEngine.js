@@ -7,58 +7,31 @@ function gameLoop (state,game,timestamp){
   
   
   const {wizardElement}=game;
-  const {wizard}=state
+  const {wizard}=state;
+
 
   // Spawn Bugs
-  if (timestamp>state.bugStats.nextSpawn){
-    game.createBug(state.bugStats);
-    state.bugStats.nextSpawn=timestamp + Math.random()*state.bugStats.maxSpawnPeriod;
-  }
+  spawnBugs(timestamp,state,game)
 
   // Move Wizard
   modifyWizardPosition(state,game,wizard)
 
   //Shooting
-
-  if (state.keys.Space){
-      game.wizardElement.style.backgroundImage=`url('./images/wizard-fire.png')`
-      game.createFireball(wizard,state.fireballStats);
-   
-  }else{
-    game.wizardElement.style.backgroundImage=`url('./images/wizard.png')`
-  }
+  playerShooting(state,game,timestamp,wizard)
 
   //Render Fireballs 
-  document.querySelectorAll('.fireball').forEach(fireball=>{
-    let posX=parseInt(fireball.style.left);
-    if (posX > game.gameScreen.offsetWidth - state.fireballStats.width-2){
-      fireball.remove()
-    }else {
-      
-      fireball.style.left=posX + state.fireballStats.speed + 'px';
-    }
-   
- })
+  renderFireballs (game,state)
 
-  
-   //Render Bugs
-   document.querySelectorAll('.bug').forEach(bug=>{
-      let posX=parseInt(bug.style.left);
-      if (posX>0){
-        bug.style.left=posX - state.bugStats.speed + 'px';
-      }else {
-        bug.remove()
-      }
-     if(detectCollision(wizardElement,bug)){
-       console.log('collision')
-     }
-   })
+  //Render Bugs
+  renderBugs(game,state);
 
   // Render Wizard
-  renderWizardMovement(wizardElement,wizard)
+  renderWizardMovement(wizardElement,wizard,wizardElement)
 
-
-  window.requestAnimationFrame(gameLoop.bind(null,state,game))
+  if(state.isActiveGame){
+    window.requestAnimationFrame(gameLoop.bind(null,state,game))
+  }
+  
 }
 
 
@@ -104,4 +77,56 @@ function detectCollision(objectA, objectB) {
            first.bottom < second.top || 
            first.right < second.left || 
            first.left > second.right);
+}
+
+function gameOver(game,state){
+  state.isActiveGame=false
+  game.gameOverScreen.classList.remove('hidden');
+  return;
+}
+
+function playerShooting(state,game,timestamp,wizard){
+  if (state.keys.Space && timestamp - state.fireballStats.lastTimeFireball > state.fireballStats.fireInterval){
+    game.wizardElement.style.backgroundImage=`url('./images/wizard-fire.png')`
+    game.createFireball(wizard,state.fireballStats);
+    state.fireballStats.lastTimeFireball=timestamp; 
+}else{
+  game.wizardElement.style.backgroundImage=`url('./images/wizard.png')`
+}
+}
+
+function spawnBugs(timestamp,state,game){
+  if (timestamp>state.bugStats.nextSpawn){
+    game.createBug(state.bugStats);
+    state.bugStats.nextSpawn=timestamp + Math.random()*state.bugStats.maxSpawnPeriod;
+  }
+}
+
+function renderFireballs (game,state){
+  document.querySelectorAll('.fireball').forEach(fireball=>{
+    let posX=parseInt(fireball.style.left);
+    if (posX > game.gameScreen.offsetWidth - state.fireballStats.width-2){
+      fireball.remove()
+    }else {
+      
+      fireball.style.left=posX + state.fireballStats.speed + 'px';
+    }
+   
+ })
+}
+
+function renderBugs(game,state){
+  document.querySelectorAll('.bug').forEach(bug=>{
+    let posX=parseInt(bug.style.left);
+    if (posX>0){
+      bug.style.left=posX - state.bugStats.speed + 'px';
+    }else {
+      bug.remove()
+    }
+      if(detectCollision(game.wizardElement,bug)){
+        gameOver(game,state);
+      }
+  
+    
+ })
 }

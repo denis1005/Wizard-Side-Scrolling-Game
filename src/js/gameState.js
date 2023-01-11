@@ -1,6 +1,7 @@
 function initState(){
 
     const state={
+        isActiveGame:true,
         wizard:{
             width:82,
             height:100,
@@ -16,9 +17,11 @@ function initState(){
            Space:false,
         },
         fireballStats:{
-            width:10,
-            height:10,
-            speed:4,
+            width:20,
+            height:20,
+            speed:5,
+            fireInterval:500,
+            lastTimeFireball:0
         },
         bugStats: {
              width:50,
