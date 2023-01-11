@@ -33,3 +33,7 @@ game.startScreen.addEventListener('click',(e)=>{
    start(state,game);
 })
 
+game.gameOverScreen.addEventListener('click',(e)=>{
+   document.location.reload(true)
+})
+

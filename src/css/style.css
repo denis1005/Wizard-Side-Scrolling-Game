@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Kalam:wght@300&display=swap');
+
+
 body {
-    font-family: 'Consolas';
+    font-family: 'Courgette', cursive;
     margin: 0;
     overflow: hidden;
 }
@@ -14,6 +17,7 @@ body {
     font-size: 48px;
     border: 1px solid black;
     width: 400px;
+    height: 250px;
     background-color:lightgreen ;
     top:50%;
     left: 50%;
@@ -22,6 +26,23 @@ body {
     padding: 20px;
     border-radius: 20px;
     cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.logo-container{
+    width: 70%;
+}
+
+.logo-container img {
+    width: 100%;
+
+    object-fit: fill;
+}
+
+.content{
+    width: 80%;
 }
 
 .start-screen:hover{
@@ -32,7 +53,10 @@ body {
     width: 100%;
     height: 100%;
     display: block;
-    background-color:blue ;
+    background-color: #0093E9;
+    background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+
+    
 }
 
 .hidden {
@@ -64,13 +88,18 @@ body {
     position: absolute;
     width: 50%;
     background-color: brown;
-    top: 100px;
-    left: 25%;
     z-index: 1;
     text-align: center;
     padding: 30px;
     border-radius: 20px;
     cursor: pointer;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.game-over:hover {
+    background-color: rgb(97, 3, 3);
 }
 
 .score {
