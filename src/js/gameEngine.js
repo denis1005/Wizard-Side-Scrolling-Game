@@ -15,19 +15,31 @@ function gameLoop (state,game,timestamp){
     state.bugStats.nextSpawn=timestamp + Math.random()*state.bugStats.maxSpawnPeriod;
   }
 
- 
-  
   // Move Wizard
   modifyWizardPosition(state,game,wizard)
 
   //Shooting
 
   if (state.keys.Space){
-    game.wizardElement.style.backgroundImage=`url('./images/wizard-fire.png')`
-    game.createFireball(wizard,state.fireballStats);
+      game.wizardElement.style.backgroundImage=`url('./images/wizard-fire.png')`
+      game.createFireball(wizard,state.fireballStats);
+   
   }else{
     game.wizardElement.style.backgroundImage=`url('./images/wizard.png')`
   }
+
+  //Render Fireballs 
+  document.querySelectorAll('.fireball').forEach(fireball=>{
+    let posX=parseInt(fireball.style.left);
+    if (posX > game.gameScreen.offsetWidth - state.fireballStats.width-2){
+      fireball.remove()
+    }else {
+      
+      fireball.style.left=posX + state.fireballStats.speed + 'px';
+    }
+   
+ })
+
   
    //Render Bugs
    document.querySelectorAll('.bug').forEach(bug=>{
@@ -40,7 +52,7 @@ function gameLoop (state,game,timestamp){
      
    })
 
-  // Render
+  // Render Wizard
   renderWizardMovement(wizardElement,wizard)
 
  

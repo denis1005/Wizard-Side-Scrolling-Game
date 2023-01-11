@@ -18,6 +18,7 @@ function initState(){
         fireballStats:{
             width:10,
             height:10,
+            speed:4,
         },
         bugStats: {
              width:50,
