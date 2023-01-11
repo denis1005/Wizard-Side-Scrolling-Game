@@ -38,3 +38,11 @@ body {
 .hidden {
     display: none;
 }
+
+.wizard{
+    position: absolute;
+    background-image: url('../images/wizard.png');
+    object-fit: fill;
+    background-repeat: no-repeat;
+   
+}
