@@ -78,6 +78,14 @@ body {
     
 }
 
+
+.error {
+    position: absolute;
+    background-image :url('../images/error.png');
+    background-size: cover;
+    
+}
+
 .fireball {
     position: absolute;
     background-image: url('../images/fire-ball.png');

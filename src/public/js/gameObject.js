@@ -40,6 +40,16 @@ function initGameObject(){
        bugElement.style.top=Math.floor(Math.random()*(gameScreen.offsetHeight - stats.height)) + 'px';
        gameScreen.appendChild(bugElement);
        return bugElement;
-     }
+     },
+     createError(stats){
+      let errorElement=document.createElement('div');
+      errorElement.classList.add('error');
+      errorElement.style.width=stats.width + 'px';
+      errorElement.style.height=stats.height + 'px';
+      errorElement.style.left=gameScreen.offsetWidth - stats.width + 'px';
+      errorElement.style.top=Math.floor(Math.random()*(gameScreen.offsetHeight - stats.height)) + 'px';
+      gameScreen.appendChild(errorElement);
+      return errorElement;
+    }
    }
 }

@@ -11,8 +11,12 @@ function gameLoop (state,game,timestamp){
 
 
 
-  // Spawn Bugs
+  // Spawn Bugs, Errors
   spawnBugs(timestamp,state,game)
+  if(state.Level>=2){
+    spawnError(timestamp,state,game)
+  }
+ 
 
   // Move Wizard
   modifyWizardPosition(state,game,wizard)
@@ -23,8 +27,11 @@ function gameLoop (state,game,timestamp){
   //Render Fireballs 
   renderFireballs (game,state)
 
-  //Render Bugs
+  //Render Bugs, Errors
   renderBugs(game,state);
+  if(state.Level>=2){
+    renderErrors(game,state)
+  }
 
   // Render Wizard
   renderWizardMovement(wizardElement,wizard,wizardElement)
@@ -104,6 +111,13 @@ function spawnBugs(timestamp,state,game){
   }
 }
 
+function spawnError(timestamp,state,game){
+  if (timestamp>state.errorStats.nextSpawn){
+    game.createError(state.errorStats);
+    state.errorStats.nextSpawn=timestamp + Math.random()*state.errorStats.maxSpawnPeriod;
+  }
+}
+
 function renderFireballs (game,state){
   document.querySelectorAll('.fireball').forEach(fireball=>{
     let posX=parseInt(fireball.style.left);
@@ -132,11 +146,7 @@ function renderBugs(game,state){
       document.querySelectorAll('.fireball').forEach(fireball=>{
        if(detectCollision(fireball,bug)){
         state.gamePoints+=state.bugKillBonus;
-        if(state.gamePoints >=100 &&  state.Level==1){
-          state.Level+=1
-          state.bugStats.speed*=3
-          state.bugStats.maxSpawnPeriod-=1000
-        }
+        levelUp(state)
         bug.remove();
         fireball.remove();
         game.scoreElement.textContent=`${state.gamePoints} pts. Level: ${state.Level}`
@@ -146,5 +156,56 @@ function renderBugs(game,state){
   
     
  })
+}
+
+function renderErrors(game,state){
+  document.querySelectorAll('.error').forEach(error=>{
+    let posX=parseInt(error.style.left);
+    if (posX>0){
+      error.style.left=posX - state.errorStats.speed + 'px';
+    }else {
+      error.remove()
+    }
+      if(detectCollision(game.wizardElement,error)){
+        gameOver(game,state);
+      }
+    
+      document.querySelectorAll('.fireball').forEach(fireball=>{
+       if(detectCollision(fireball,error)){
+        state.gamePoints+=state.errorKillBonus;
+        levelUp(state)
+        error.remove();
+        fireball.remove();
+        game.scoreElement.textContent=`${state.gamePoints} pts. Level: ${state.Level}`
+       }
+       
+     })
+  
+    
+ })
+}
+
+function levelUp(state){
+  if(state.gamePoints >=300 &&  state.Level==1){
+    state.Level+=1
+    state.bugStats.speed+=state.Level
+    state.bugStats.maxSpawnPeriod-=1000
+  }
+  if(state.gamePoints >=600 &&  state.Level==2){
+    state.Level+=1
+    state.bugStats.speed+=state.Level
+    state.bugStats.maxSpawnPeriod-=500
+  }
+
+  if(state.gamePoints >=1000 &&  state.Level==3){
+    state.Level+=1
+    state.bugStats.speed+=state.Level
+    state.bugStats.maxSpawnPeriod-=500
+  }
+  if(state.gamePoints >=1300 &&  state.Level==4){
+    state.Level+=1
+    state.bugStats.speed+=state.Level
+    state.bugStats.maxSpawnPeriod-=500
+  }
 }
 

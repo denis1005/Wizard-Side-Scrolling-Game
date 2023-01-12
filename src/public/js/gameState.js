@@ -4,6 +4,7 @@ function initState(){
         isActiveGame:true,
         gamePoints:0,
         bugKillBonus:50,
+        errorKillBonus:100,
         Level:1,
         wizard:{
             width:82,
@@ -32,7 +33,14 @@ function initState(){
              nextSpawn:0,
              maxSpawnPeriod:3000,
              speed:4,
-        }
+        },
+        errorStats: {
+            width:40,
+            height:40,
+            nextSpawn:0,
+            maxSpawnPeriod:3000,
+            speed:4,
+       }
     }
     return state;
 }
