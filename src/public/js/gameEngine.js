@@ -198,17 +198,23 @@ function levelUp(state){
     state.Level+=1
     state.bugStats.speed+=state.Level
     state.bugStats.maxSpawnPeriod-=500
+    state.errorStats.speed+=state.Level
+    state.errorStats.maxSpawnPeriod-=500
   }
 
   if(state.gamePoints >=1000 &&  state.Level==3){
     state.Level+=1
     state.bugStats.speed+=state.Level
     state.bugStats.maxSpawnPeriod-=500
+    state.errorStats.speed+=state.Level
+    state.errorStats.maxSpawnPeriod-=500
   }
   if(state.gamePoints >=1300 &&  state.Level==4){
     state.Level+=1
     state.bugStats.speed+=state.Level
     state.bugStats.maxSpawnPeriod-=500
+    state.errorStats.speed+=state.Level
+    state.errorStats.maxSpawnPeriod-=500
   }
 }
 
