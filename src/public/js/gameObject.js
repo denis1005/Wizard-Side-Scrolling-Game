@@ -50,6 +50,16 @@ function initGameObject(){
       errorElement.style.top=Math.floor(Math.random()*(gameScreen.offsetHeight - stats.height)) + 'px';
       gameScreen.appendChild(errorElement);
       return errorElement;
+    },
+     createCloud(stats){
+      let cloudElement=document.createElement('div');
+      cloudElement.classList.add('cloud');
+      cloudElement.style.width=stats.width + 'px';
+      cloudElement.style.height=stats.height + 'px';
+      cloudElement.style.left=gameScreen.offsetWidth - stats.width + 'px';
+      cloudElement.style.top=Math.floor(Math.random()*(gameScreen.offsetHeight - stats.height)) + 'px';
+      gameScreen.appendChild(cloudElement);
+      return cloudElement;
     }
    }
 }

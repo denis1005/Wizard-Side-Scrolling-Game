@@ -65,6 +65,7 @@ body {
 
 .wizard{
     position: absolute;
+    z-index: 2;
     background-image: url('../images/wizard.png');
     object-fit: fill;
     background-repeat: no-repeat;
@@ -72,7 +73,9 @@ body {
 }
 
 .bug {
+   
     position: absolute;
+    z-index: 2;
     background-image :url('../images/bug.png');
     background-size: cover;
     
@@ -81,6 +84,7 @@ body {
 
 .error {
     position: absolute;
+    z-index: 2;
     background-image :url('../images/error.png');
     background-size: cover;
     
@@ -88,6 +92,7 @@ body {
 
 .fireball {
     position: absolute;
+    z-index: 2;
     background-image: url('../images/fire-ball.png');
     background-size: cover;
 }
@@ -114,4 +119,12 @@ body {
     background-color: black;
     color: white;
     text-align: center;
+}
+
+.cloud {
+    
+    position: absolute;
+    z-index: 1;
+    background-image: url('../images/cloud.png');
+    background-size: cover;
 }

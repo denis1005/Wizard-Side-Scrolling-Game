@@ -12,7 +12,8 @@ function gameLoop (state,game,timestamp){
 
 
   // Spawn Bugs, Errors
-  spawnBugs(timestamp,state,game)
+  spawnBugs(timestamp,state,game);
+  spawnClouds(timestamp,state,game);
   if(state.Level>=2){
     spawnError(timestamp,state,game)
   }
@@ -27,11 +28,16 @@ function gameLoop (state,game,timestamp){
   //Render Fireballs 
   renderFireballs (game,state)
 
-  // //Render Bugs, Errors
+  //Render Bugs, Errors
   renderElement(game,state,'bug',state.bugStats.speed,state.bugKillBonus)
     if(state.Level>=2){
     renderElement(game,state,'error',state.errorStats.speed,state.errorKillBonus)
     }
+
+
+    //Render Cloud
+    renderClouds(game,state)
+  
 
   // Render Wizard
   renderWizardMovement(wizardElement,wizard,wizardElement)
@@ -114,6 +120,13 @@ function spawnBugs(timestamp,state,game){
   }
 }
 
+function spawnClouds(timestamp,state,game){
+  if (timestamp>state.cloudStats.nextSpawn){
+    game.createCloud(state.cloudStats);
+    state.cloudStats.nextSpawn=timestamp + Math.random()*state.cloudStats.maxSpawnPeriod;
+  }
+}
+
 function spawnError(timestamp,state,game){
   if (timestamp>state.errorStats.nextSpawn){
     game.createError(state.errorStats);
@@ -193,13 +206,17 @@ function levelUp(state){
     state.Level+=1
     state.bugStats.speed+=state.Level
     state.bugStats.maxSpawnPeriod-=1000
+    state.cloudStats.speed+=state.Level
+    state.cloudStats.maxSpawnPeriod-=1000
   }
   if(state.gamePoints >=600 &&  state.Level==2){
     state.Level+=1
     state.bugStats.speed+=state.Level
     state.bugStats.maxSpawnPeriod-=500
     state.errorStats.speed+=state.Level
-    state.errorStats.maxSpawnPeriod-=500
+    state.errorStats.maxSpawnPeriod-=50
+    state.cloudStats.speed+=state.Level
+    state.cloudStats.maxSpawnPeriod-=1000
   }
 
   if(state.gamePoints >=1000 &&  state.Level==3){
@@ -208,6 +225,8 @@ function levelUp(state){
     state.bugStats.maxSpawnPeriod-=500
     state.errorStats.speed+=state.Level
     state.errorStats.maxSpawnPeriod-=500
+    state.cloudStats.speed+=state.Level
+    state.cloudStats.maxSpawnPeriod-=1000
   }
   if(state.gamePoints >=1300 &&  state.Level==4){
     state.Level+=1
@@ -215,6 +234,8 @@ function levelUp(state){
     state.bugStats.maxSpawnPeriod-=500
     state.errorStats.speed+=state.Level
     state.errorStats.maxSpawnPeriod-=500
+    state.cloudStats.speed+=state.Level
+    state.cloudStats.maxSpawnPeriod-=1000
   }
 }
 
@@ -245,3 +266,13 @@ function renderElement(game,state,cssClass,elementSpeed,killElementPoints){
  })
 }
 
+function renderClouds(game,state){
+  document.querySelectorAll('.cloud').forEach(cloud=>{
+    let posX=parseInt(cloud.style.left);
+    if (posX>0){
+      cloud.style.left=posX - state.cloudStats.speed + 'px';
+    }else {
+      cloud.remove()
+    }
+ })
+}

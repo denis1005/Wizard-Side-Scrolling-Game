@@ -20,11 +20,11 @@ function initState(){
            KeyW:false,
            Space:false,
         },
-        fireballStats:{
+        fireballStats:{  
             width:30,
             height:30,
             speed:5,
-            fireInterval:500,
+            fireInterval:400,
             lastTimeFireball:0
         },
         bugStats: {
@@ -40,6 +40,13 @@ function initState(){
             nextSpawn:0,
             maxSpawnPeriod:3000,
             speed:4,
+       },
+        cloudStats: {
+        width:200,
+        height:200,
+        nextSpawn:0,
+        maxSpawnPeriod:4000,
+        speed:3,
        }
     }
     return state;
