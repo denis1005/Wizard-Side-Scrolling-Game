@@ -43,10 +43,6 @@ You can also open live the site at:
 
 [https://crypto-dictionary-angular.web.app/](https://wizard-side-scrolling-game.web.app/)
 
-## ⛏️ Built Using <a name = "built_using"></a>
-- [Javascript]
-- [CSS]
-- [HTML]
 
 
 ## ✍️ Author <a name = "authors"></a>
