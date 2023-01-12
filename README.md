@@ -1,14 +1,7 @@
-<p align="center">
-![Home](https://user-images.githubusercontent.com/19151979/212086454-3a2d37fe-d140-4395-9a97-ef344194625f.PNG)
-</p>
 
-<h3 align="center">Wizard Scrolling Game</h3>
+![Home](https://user-images.githubusercontent.com/19151979/212089031-06710533-df58-42fa-bd1b-0e54e5d52612.PNG)
 
-
-
-<p align="center"> 
-  Side-Scrolling Game
-</p>
+<h3 align="center">Wizard Scrolling Game  https://wizard-side-scrolling-game.web.app/</h3>
 
 ## 📝 Table of Contents
 - [About](#about)
@@ -34,11 +27,15 @@ Open the index.html file or you can play it  https://wizard-side-scrolling-game.
 
 ## 🎈 Usage <a name="usage"></a>
 
-The application have:
+Click the start button to start the game
 
- 
+Try to not collide with the bugs and errors or it will finish the game.
 
+ ![gameOver](https://user-images.githubusercontent.com/19151979/212089935-b94bccb6-7303-426e-a9c8-ca4a2ed5eb2a.PNG)
 
+Press space to fire, if the fireball collides with an error/bug it will destroy them and you will get points. For now, there are 4 different levels with faster obstacles. You will level up when you gather the points
+
+![Capture](https://user-images.githubusercontent.com/19151979/212090517-ffda5b8e-638e-4eab-a243-babd65b00b15.PNG)
 
 ## 🚀 Deployment <a name = "deployment"></a>
 
