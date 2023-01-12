@@ -27,11 +27,11 @@ function gameLoop (state,game,timestamp){
   //Render Fireballs 
   renderFireballs (game,state)
 
-  //Render Bugs, Errors
-  renderBugs(game,state);
-  if(state.Level>=2){
-    renderErrors(game,state)
-  }
+  // //Render Bugs, Errors
+  renderElement(game,state,'bug',state.bugStats.speed,state.bugKillBonus)
+    if(state.Level>=2){
+    renderElement(game,state,'error',state.errorStats.speed,state.errorKillBonus)
+    }
 
   // Render Wizard
   renderWizardMovement(wizardElement,wizard,wizardElement)
@@ -44,6 +44,9 @@ function gameLoop (state,game,timestamp){
 }
 
 
+
+
+// Functionalities 
 function modifyWizardPosition(state,game,wizard){
  
 
@@ -207,5 +210,32 @@ function levelUp(state){
     state.bugStats.speed+=state.Level
     state.bugStats.maxSpawnPeriod-=500
   }
+}
+
+function renderElement(game,state,cssClass,elementSpeed,killElementPoints){
+  document.querySelectorAll(`.${cssClass}`).forEach(element=>{
+    let posX=parseInt(element.style.left);
+    if (posX>0){
+      element.style.left=posX - elementSpeed + 'px';
+    }else {
+      element.remove()
+    }
+      if(detectCollision(game.wizardElement,element)){
+        gameOver(game,state);
+      }
+    
+      document.querySelectorAll('.fireball').forEach(fireball=>{
+       if(detectCollision(fireball,element)){
+        state.gamePoints+=killElementPoints;
+        levelUp(state)
+        element.remove();
+        fireball.remove();
+        game.scoreElement.textContent=`${state.gamePoints} pts. Level: ${state.Level}`
+       }
+       
+     })
+  
+    
+ })
 }
 
